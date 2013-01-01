@@ -50,7 +50,7 @@ namespace Algorithms.Mathematics.LinearAlgebra {
 
         public static Matrix Sum(Matrix matrix1, Matrix matrix2, bool isSubtraction) {
             if (matrix1 != null && matrix2 != null) {
-                if (matrix1.rowSize == matrix2.rowSize && matrix1.columnSize == matrix2.columnSize) {
+                if (matrix1.rowSize == matrix2.columnSize && matrix1.rowSize == matrix2.columnSize) {
                     double[,] result = new double[matrix1.rowSize, matrix1.columnSize];
                     for (int i = 0; i < matrix1.rowSize; i++) {
                         for (int j = 0; j < matrix1.columnSize; j++) {
@@ -74,6 +74,35 @@ namespace Algorithms.Mathematics.LinearAlgebra {
                 }
             }
             return resultMatrix;
+        }
+
+        public static Matrix operator *(Matrix matrix1, Matrix matrix2) {
+            if (matrix1 != null && matrix2 != null) {
+                if (matrix1.columnSize == matrix2.rowSize) {
+                    Matrix resultMatrix = new Matrix(matrix1.rowSize, matrix2.columnSize);
+                    resultMatrix.Zero();
+                    for (int i = 0; i < matrix1.rowSize; i++) {
+                        for (int j = 0; j < matrix2.rowSize; j++) {
+                            for (int k = 0; k < matrix1.rowSize; k++) {
+                                resultMatrix[i, j] = resultMatrix[i, j] + matrix1[i, k] * matrix2[k, j]; 
+                            }
+                        }
+                        Console.WriteLine();
+                    }
+                    return resultMatrix;
+                }
+                throw new ArgumentOutOfRangeException("These matrices can't be multiplied");
+            }
+            throw new ArgumentNullException("At least one of the matrices is null");
+        }
+        
+        public Matrix Zero() {
+            for (int i = 0; i < rowSize; i++) {
+                for (int j = 0; j < columnSize; j++) {
+                    this[i, j] = 0;
+                }
+            }
+            return this;
         }
     }
 }

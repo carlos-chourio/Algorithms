@@ -19,16 +19,16 @@ namespace Algorithms {
 
         private static void TestMatrices() {
             Matrix matrix1 = new Matrix(new double[,] {
-                {1,2,3},
-                {4,5,6}
+                {1,4,7},
+                {2,5,8},
+                {3, 6, 9}
             });
             Matrix matrix2 = new Matrix(new double[,] {
-                {1,2},
-                {4,5},
-                {7,8}
-
+                {1, -1, 2},
+                {2, -1, 2},
+                {3, -3, 0}
             });
-            Matrix result = matrix1 + matrix2.Transpose(); // matrix1 *2;//  matrix2;
+            Matrix result = matrix1 * matrix2; // matrix1 *2;//  matrix2;
             PrintMatrix(result);
         }
 
