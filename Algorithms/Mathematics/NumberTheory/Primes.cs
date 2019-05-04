@@ -6,27 +6,14 @@ namespace Algorithms.Mathematics.NumberTheory {
         public IEnumerable<int> GetPrimesSieve(int finalNumber) {
             List<int> numbers = new List<int>();
             numbers.AddRange(Enumerable.Range(2, finalNumber-1));
-            int index = 1;
-            int currentValue = numbers[0]*2;
-            int pivot = numbers[0];
-            int fullTurns = 0;
-            while (true) {
-                if (currentValue == numbers[index]) {
-                    numbers.RemoveAt(index);
-                } else {
-                    if (numbers[index] > currentValue) {
-                        currentValue += pivot;
+            for (int i = 0; numbers[i] < finalNumber/2; i++) {
+                int currentValue = numbers[i] * 2;
+                for (int j = i*2; j < numbers.Count; j++) {
+                    if (currentValue== numbers[j]) {
+                        numbers.RemoveAt(j);j--;
+                    } else if (numbers[j] > currentValue) {
+                        currentValue += numbers[i];
                     }
-                    index++;
-                }
-                if (index == numbers.Count) {
-                    if (numbers[fullTurns] > numbers[numbers.Count - 1]/2) {
-                        break;
-                    }
-                    fullTurns++;
-                    index = fullTurns;
-                    currentValue = numbers[fullTurns]*2;
-                    pivot = numbers[fullTurns];
                 }
             }
             return numbers;
