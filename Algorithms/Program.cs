@@ -1,7 +1,5 @@
 ﻿using Algorithms.Mathematics.LinearAlgebra;
-using Algorithms.Mathematics.NumberTheory;
 using System;
-using System.Collections.Generic;
 
 namespace Algorithms {
     class Program {
@@ -14,6 +12,7 @@ namespace Algorithms {
             // foreach (var prime in primes) {
             //     Console.WriteLine($"prime {++i}: {prime}");
             // }
+            
             TestMatrices();
             Console.ReadKey();
         }
@@ -27,12 +26,14 @@ namespace Algorithms {
                 {1,2,3},
                 {4,5,6}
             });
-            Matrix result = matrix1 *2;//  matrix2;
+            var x = matrix1[0, 1];
+            Matrix result = matrix1 + matrix2; // matrix1 *2;//  matrix2;
             PrintMatrix(result);
         }
+
          private static void PrintMatrix(Matrix matrix) {
-             for (int i = 0; i < matrix.columnSize; i++) {
-                 for (int j = 0; j < matrix.rowSize; j++) {
+             for (int i = 0; i < matrix.rowSize; i++) {
+                 for (int j = 0; j < matrix.columnSize; j++) {
                     Console.Write($"{matrix[i,j]}\t");       
                  }
                  Console.WriteLine();
