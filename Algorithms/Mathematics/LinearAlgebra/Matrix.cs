@@ -66,17 +66,14 @@ namespace Algorithms.Mathematics.LinearAlgebra {
             throw new ArgumentNullException("At least one of the matrices is null");
         }
 
-        public static Matrix Transpose(Matrix matrix) {
-            if (matrix != null) {
-                Matrix resultMatrix = new Matrix(matrix.columnSize, matrix.rowSize);
-                for (int i = 0; i < matrix.rowSize; i++) {
-                    for (int j = 0; j < matrix.columnSize; j++) {
-                        resultMatrix[j, i] = matrix[i, j];
-                    }
+        public Matrix Transpose() {
+            Matrix resultMatrix = new Matrix(columnSize, rowSize);
+            for (int i = 0; i < rowSize; i++) {
+                for (int j = 0; j < columnSize; j++) {
+                    resultMatrix[j, i] = this[i, j];
                 }
-                return resultMatrix;
             }
-            throw new ArgumentNullException("The matrix is null");
+            return resultMatrix;
         }
     }
 }

@@ -23,11 +23,12 @@ namespace Algorithms {
                 {4,5,6}
             });
             Matrix matrix2 = new Matrix(new double[,] {
-                {1,2,3},
-                {4,5,6}
+                {1,2},
+                {4,5},
+                {7,8}
+
             });
-            var x = matrix1[0, 1];
-            Matrix result = matrix1 + matrix2; // matrix1 *2;//  matrix2;
+            Matrix result = matrix1 + matrix2.Transpose(); // matrix1 *2;//  matrix2;
             PrintMatrix(result);
         }
 
